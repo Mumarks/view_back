@@ -1,1 +1,0 @@
-.libras-lighter .libras-timeline-bar{background:linear-gradient(to bottom,#eeeeee 0%,#ffffff 50%,#fafafa 100%);}.libras-lighter .libras-timeline-ticLabel{color:#000;}.libras-lighter .libras-timeline-ticMain{position:absolute;bottom:0;left:0;width:1px;height:50%;background:#000;}.libras-lighter .libras-timeline-ticSub{background:#444;}

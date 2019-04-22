@@ -1,1 +1,0 @@
-define(["Libras"],function(e){var r=e.Libras3DTileset,i=e.defined,m=e.DeveloperError,u=e.createGuid;return function(e){if(!i(e.url))throw new m("url is required");e.maximumScreenSpaceError=e.maximumScreenSpaceError||2,e.maximumNumberOfLoadedTiles=e.maximumNumberOfLoadedTiles||1e3;var a=new r(e);return a.id=e.id||u(),a}});

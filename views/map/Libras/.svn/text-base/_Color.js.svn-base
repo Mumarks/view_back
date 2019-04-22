@@ -1,1 +1,0 @@
-define(["Libras"],function(r){var e=r.Color,n=r.defaultValue,o=r.defined;return function(r){return"string"==typeof r?new e.fromCssColorString(r):r instanceof Array?new e(n(r[0],1),n(r[1],1),n(r[2],1),n(r[3],1)):r instanceof Object?o(r.a)?e.fromAlpha(e.fromBytes(n(r.r,1),n(r.g,1),n(r.b,1)),r.a):e.fromBytes(n(r.r,1),n(r.g,1),n(r.b,1)):void 0}});

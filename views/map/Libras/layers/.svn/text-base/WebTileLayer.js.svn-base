@@ -1,1 +1,0 @@
-define(["Libras"],function(r){var e=r.defined,i=r.createGuid,n=r.DeveloperError;return function(d){if(!e(d.url))throw new n("url is required");var u=new r.UrlTemplateImageryProvider(d);return u.id=d.id||i(),u}});
