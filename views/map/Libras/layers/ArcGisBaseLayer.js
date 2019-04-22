@@ -1,0 +1,1 @@
+define(["Libras"],function(r){return function(e){if(!r.defined(e.url)||""===e.url)throw new r.DeveloperError("url is required");return new r.ArcGisMapServerImageryProvider(e)}});

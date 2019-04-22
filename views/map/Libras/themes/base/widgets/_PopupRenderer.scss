@@ -1,0 +1,230 @@
+@mixin popupRenderer() {
+  .libras-popup-renderer__media,
+  .libras-popup-renderer__attachments,
+  .libras-popup-renderer__media-container {
+    display: flex;
+  }
+  .libras-popup-renderer__loading-container {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding: $cap_spacing 0;
+  }
+
+  .libras-icon-loading-indicator {
+    display: inline-block;
+  }
+
+  .libras-popup-renderer {
+    width: 100%;
+  }
+  // GENERAL
+  .libras-popup-renderer h1 {
+    font-size: $h1_text_size;
+    font-weight: $text_weight_header;
+  }
+  .libras-popup-renderer h2 {
+    font-size: $h2_text_size;
+    font-weight: $text_weight_header;
+  }
+  .libras-popup-renderer img {
+    max-width: 100%;
+  }
+  .libras-popup-renderer figcaption {
+    font-size: $caption_text_size;
+    font-style: italic;
+    padding: 0;
+    margin: .2em 0 0;
+    display: block;
+  }
+  .libras-popup-renderer ul {
+    margin-bottom: 1rem;
+    padding: 0 0 0 1rem;
+  }
+  .libras-popup-renderer li {
+    font-size: $body_text_size;
+    margin: .3em 0;
+  }
+  .libras-popup-renderer__content-element {
+    padding: 0 floor($side_spacing/2) $cap_spacing*2;
+  }
+  .libras-popup-renderer__content-element:last-child {
+    padding-bottom: 0;
+  }
+  .libras-popup-renderer__field-data--date {
+    text-transform: capitalize;
+  }
+  // ATTACHMENTS
+  .libras-popup-renderer__attachments-title {
+    margin: 0 auto 0 0;
+    font-weight: $text_weight_header;
+  }
+  .libras-popup-renderer__attachments {
+    flex-flow: column wrap;
+    align-items: flex-start;
+  }
+  ul.libras-popup-renderer__attachments-items {
+    padding: 0 0 0 0;
+    margin: floor($cap_spacing/2) 0;
+  }
+  li.libras-popup-renderer__attachments-item {
+    list-style-type: none;
+    line-height: 1.2em;
+    display: table;
+  }
+  a.libras-popup-renderer__attachments-item-link {
+    text-decoration: none;
+    font-size: $body_text_size;
+    color: $button_text_color;
+    max-width: 100%;
+    word-break: break-all;
+    display: table-row;
+  }
+  a.libras-popup-renderer__attachments-item-link:hover {
+    color: $button_text_hover_color;
+  }
+  .libras-popup-renderer__attachments-item-icon,
+  .libras-popup-renderer__attachments-item-title {
+    display: table-cell;
+    padding-top: floor($cap_spacing/4);
+    padding-bottom: floor($cap_spacing/4);
+    vertical-align: middle;
+  }
+  .libras-popup-renderer__attachments-item-icon {
+    padding-left: floor($side_spacing/2);
+    padding-right: floor($side_spacing/2);
+  }
+  // MEDIA
+  .libras-popup-renderer__media {
+    flex-flow: row wrap;
+    align-items: center;
+  }
+  .libras-popup-renderer__media-summary {
+    flex-flow: row nowrap;
+    align-items: center;
+    display: none;
+    margin: 0 floor($side_spacing/2) 0 auto;
+    padding: 0;
+  }
+  .libras-popup-renderer__media-count {
+    padding: 0 .2rem;
+  }
+  .libras-popup-renderer__media-image-summary {
+    list-style-type: none;
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding: 0 0 0 .7rem;
+  }
+  .libras-popup-renderer__media-item-title {
+    font-size: $h2_text_size;
+    padding: 0.3rem 0 0;
+  }
+  .libras-popup-renderer__media-item-caption {
+    font-size: $body_text_size;
+    padding: 0.1rem 0 0;
+  }
+  .libras-popup-renderer__media-container {
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    min-height: 150px;
+    margin-top: floor($cap_spacing/2);
+  }
+  .libras-popup-renderer__media-container .libras-popup-renderer__button {
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 15%;
+    font-size: 20px;
+    color: $button_text_color;
+    display: none;
+  }
+  .libras-popup-renderer__media-container .libras-popup-renderer__button:hover {
+    cursor: pointer;
+    color: $button_text_hover_color;
+  }
+  .libras-popup-renderer__media-item {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .libras-popup-renderer__media-chart {
+    //  Dimensions on containing div are required
+    //  for Chart library to know how big to make the chart.
+    width: 250px;
+    height: 250px;
+  }
+  .libras-popup-renderer__media-previous-icon--rtl,
+  .libras-popup-renderer__media-next-icon--rtl {
+    display: none;
+  }
+  // MULTIPLE MEDIA
+  .libras-popup-renderer--media-pagination-visible .libras-popup-renderer__media-container .libras-popup-renderer__button {
+      display: flex;
+  }
+  .libras-popup-renderer--media-pagination-visible .libras-popup-renderer__media-item-container {
+    flex: 0 0 70%;
+  }
+  .libras-popup-renderer--media-pagination-visible .libras-popup-renderer__media-summary {
+    display: flex;
+  }
+  .libras-popup-renderer--media-pagination-visible .libras-popup-renderer__media-chart {
+    //  Accounts for media items being smaller
+    //  when there are pagination buttons.
+    width: 225px;
+    height: 225px;
+  }
+  //  SCREEN SIZES
+  .libras-view-width-xlarge {
+    @include mediaImgMaxWidth(380);
+  }
+
+  .libras-view-width-large {
+    @include mediaImgMaxWidth(280);
+  }
+
+  .libras-view-width-medium {
+    @include mediaImgMaxWidth(240);
+  }
+
+  .libras-view-width-small {
+    @include mediaImgMaxWidth(225);
+  }
+
+  .libras-view-width-xsmall {
+    @include mediaImgMaxWidth(180);
+  }
+
+  .libras-view-width-xsmall .libras-docked {
+    @include mediaImgMaxWidth(300);
+  }
+  //  RTL
+  html[dir="rtl"] {
+    .libras-popup-renderer__attachments-title {
+      margin: 0 0 0 auto;
+    }
+    .libras-popup-renderer__attachments-item-icon {
+      padding: 0 0 0 .5em;
+    }
+    .libras-popup-renderer__media-summary {
+      margin: 0 auto 0 0;
+    }
+    .libras-popup-renderer__media-image-summary {
+      margin: 0 .5em 0 0;
+    }
+    .libras-popup-renderer__media-previous-icon--rtl,
+    .libras-popup-renderer__media-next-icon--rtl {
+      display: inline-block;
+    }
+    .libras-popup-renderer__media-previous-icon,
+    .libras-popup-renderer__media-next-icon {
+      display: none;
+    }
+  }
+}
+
+@if $include_PopupRenderer == true {
+  @include popupRenderer();
+}

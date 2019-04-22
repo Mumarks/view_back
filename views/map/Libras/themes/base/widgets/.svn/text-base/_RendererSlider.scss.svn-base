@@ -1,0 +1,251 @@
+@mixin rendererSlider() {
+  .libras-renderer-slider {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    font-weight: normal;
+    text-align: left;
+    background-color: #fff;
+  }
+
+  .libras-renderer-slider .libras-slider-node {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 4px;
+    white-space: nowrap;
+    margin: 0 0 0 80px;
+  }
+
+  .libras-renderer-slider .libras-slider-area {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    width: 2px;
+    height: 200px;
+  }
+
+  .libras-renderer-slider .libras-slider-area-right {
+    width: 140px;
+    height: 200px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .libras-slider-ramp-surface {
+    border: 1px solid #888;
+  }
+
+  .libras-renderer-slider .libras-slider-area-right *:focus {
+    outline: none;
+  }
+
+  .libras-renderer-slider .libras-slider-area-right .libras-histogram-bar:hover {
+    cursor: pointer;
+    fill: #888;
+  }
+
+  .libras-renderer-slider .libras-ramp {
+    border: 1px solid #888;
+  }
+
+  .libras-renderer-slider .libras-moveable {
+    position: absolute;
+    left: 0;
+  }
+
+  .libras-renderer-slider .libras-handle-container {
+    position: absolute;
+    height: 20px;
+    width: 18px;
+  }
+
+  .libras-renderer-slider .libras-handle {
+    position: absolute;
+    background-color: #000;
+    border: 1px solid #ccc;
+    border-right: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 10px;
+    height: 14px;
+    top: 3px;
+    background-image: url("../base/images/handles.png");
+    background-position: -15px -8px;
+    z-index: 4;
+    box-shadow: 0px 1px 3px #000;
+  }
+
+  .libras-renderer-slider .libras-handle-span {
+    background-color: #000;
+    border: 1px solid #ccc;
+    box-shadow: 2px 0 3px #000;
+    height: 12px;
+    width: 12px;
+    transform: scale(0.707) rotate(45deg);
+    position: absolute;
+    z-index: 3;
+    top: 3px;
+    left: 3px;
+  }
+
+  .libras-renderer-slider .libras-handle:hover,
+  .libras-handle-span:hover + .libras-handle {
+    background-position: -30px -8px;
+    background-color: #fff;
+  }
+
+  .libras-renderer-slider .libras-handle-span:hover {
+    cursor: pointer;
+  }
+
+  .libras-renderer-slider .libras-handle-label {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    text-align: right;
+  }
+
+  .libras-renderer-slider .libras-handle-label-span:hover {
+    background-color: #e5f2fe;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .libras-renderer-slider .libras-moveable .dijitNumberTextBox,
+  .libras-renderer-slider .libras-moveable .dijitValidationTextBox {
+    text-align: start;
+    position: relative;
+    width: 100px;
+    top: -3px;
+    left: 117px;
+    z-index: 99;
+  }
+
+  .libras-renderer-slider .libras-moveable .dijitValidationTextBox {
+    width: 140px;
+    left: 157px;
+  }
+
+  .libras-renderer-slider .libras-handler-tick {
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+    height: 1px;
+    left: 10px;
+    position: absolute;
+    top: 9px;
+    width: 32px;
+    z-index: 2;
+  }
+
+  .libras-renderer-slider .libras-handler-tick-top {
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #000;
+  }
+
+  .libras-renderer-slider .libras-handler-tick-bottom {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #FFF;
+  }
+
+  .libras-renderer-slider .libras-top-label-node {
+    margin-bottom: 4px;
+  }
+
+  .libras-renderer-slider .libras-top-label-node,
+  .libras-renderer-slider .libras-bottom-label-node {
+    height: 22px;
+    margin: auto;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .libras-renderer-slider .libras-top-label-node,
+  .libras-renderer-slider .libras-bottom-label-node,
+  .libras-renderer-slider .libras-handle-label {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #444;
+  }
+
+  .libras-renderer-slider .libras-handler-tick-size {
+    border-top: none !important;
+    border-bottom: 1px solid #000 !important;
+    width: 32px !important;
+  }
+
+  .libras-renderer-slider .libras-heatmap-tick {
+    width: 34px !important;
+  }
+
+  .libras-renderer-slider .libras-top-label-node span,
+  .libras-renderer-slider .libras-bottom-label-node span {
+    height: 20px;
+  }
+
+  .libras-renderer-slider .libras-top-label-node-hover:hover,
+  .libras-renderer-slider .libras-bottom-label-node-hover:hover {
+    background-color: #e5f2fe;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+
+  /* RTL Fixes */
+
+  .dj_rtl .libras-renderer-slider .libras-slider-node {
+    margin: 0 80px 0 0;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-slider-area-right {
+    text-align: right;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-slider-node .libras-handle-label {
+    direction: ltr;
+    unicode-bidi: embed;
+    left: 0;
+    position: absolute;
+    right: auto;
+    text-align: left;
+    top: 3px;
+    padding-left: 3px;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-moveable .dijitNumberTextBox {
+    left: -112px;
+    text-align: right;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-moveable .dijitValidationTextBox {
+    left: -152px;
+    text-align: right;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-handler-tick {
+    left: -42px;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-top-label-node,
+  .dj_rtl .libras-renderer-slider .libras-bottom-label-node {
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-handle {
+    border: 1px solid #ccc;
+    border-left: none;
+    box-shadow: 0px 1px 3px #000;
+    background-position: -16px -8px;
+  }
+
+  .dj_rtl .libras-renderer-slider .libras-handle-span {
+    box-shadow: 2px 0 3px #000;
+    left: 1px;
+  }
+}
+
+@if $include_RendererSlider == true {
+  @include rendererSlider();
+}

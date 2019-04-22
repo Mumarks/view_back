@@ -1,0 +1,23 @@
+$compass_size: 20px !default;
+
+@mixin compass() {
+  .libras-compass {
+    border-radius: 50%;
+  }
+
+  .libras-compass--active {
+    background-color: $selected_background_color;
+  }
+
+  .libras-compass__icon {
+    font-size: $compass_size;
+    line-height: $compass_size;
+    text-align: center;
+    width: $compass_size;
+    height: $compass_size;
+  }
+}
+
+@if $include_Compass == true {
+  @include compass();
+}

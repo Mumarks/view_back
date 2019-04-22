@@ -1,0 +1,212 @@
+@mixin print() {
+  .libras-print {
+    position: relative;
+    padding: $cap_spacing $side_spacing;
+    overflow-y: auto;
+    a {
+      text-decoration: none;
+    }
+    section[aria-hidden='true'] {
+      display: none;
+    }
+    button,
+    [role="button"] {
+      height: $button_height;
+      cursor: pointer;
+      border: none;
+    }
+  }
+  .libras-print__form-section-container {
+    margin: 0 0 $cap_spacing 0;
+  }
+  .libras-print__header-title {
+    font-size: $title_text_size;
+    font-weight: $text_weight_title;
+    padding: 0 0 $cap_spacing;
+    margin: 0 auto 0 0;
+  }
+  .libras-print__layout-section,
+  .libras-print__map-only-section {
+    padding: $cap_spacing 0 0;
+    border-top: 1px solid $border_color;
+  }
+  .libras-print__layout-tab-list {
+    position: relative;
+    bottom: -1px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .libras-print__layout-tab {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 5px 5px;
+    width: 100%;
+    cursor: pointer;
+    color: $button_text_color;
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+  .libras-print__layout-tab:hover,
+  .libras-print__layout-tab:focus {
+    color: $text_color;
+    background-color: $background_active_color;
+    border-bottom: 1px solid $border_color;
+  }
+  .libras-print__layout-tab[aria-selected='true'],
+  .libras-print__layout-tab[aria-selected='true']:hover {
+    background-color: $background_color;
+    color: $text_color;
+    border-color: $border_color;
+    border-bottom-color: $background_color;
+  }
+  .libras-print__panel--error {
+    color: $error_text_color;
+  }
+  .libras-print__panel-container {
+    flex: 1 0;
+  }
+  .libras-print__input-text {
+    border: 1px solid $border_color;
+    font-size: $text_size;
+    width: 100%;
+    margin: 0;
+    padding: 0 0.5em;
+    height: $button_height;
+  }
+  .libras-print__scale-input-container {
+    display: flex;
+    align-items: center;
+  }
+  .libras-print__advanced-options-section {
+    background-color: $background_offset_color;
+  }
+  .libras-print__advanced-options-button-container {
+    color: $text_color;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+    width: 100%;
+    overflow: visible;
+  }
+  .libras-print__advanced-options-button {
+    width: 100%;
+    background-color: transparent;
+  }
+  .libras-print__advanced-options-button[aria-expanded="true"] .libras-print__advanced-options-button-icon--closed,
+  .libras-print__advanced-options-button[aria-expanded="false"] .libras-print__advanced-options-button-icon--opened,
+  .libras-print__advanced-options-button .libras-print__advanced-options-button-icon--closed-rtl {
+    display: none;
+  }
+  .libras-print__advanced-options-button[aria-expanded="false"] .libras-print__advanced-options-button-icon--closed,
+  .libras-print__advanced-options-button[aria-expanded="true"] .libras-print__advanced-options-button-icon--opened {
+    display: block;
+  }
+  .libras-print__advanced-options-button-title {
+    font-size: $text_size_small;
+    margin: 0 0.2em;
+  }
+  .libras-print__advanced-options-container {
+    font-size: $text_size_small;
+    padding: floor($cap_spacing/2) floor($side_spacing/2);
+    .libras-print__input-text {
+      height: $button_height;
+    }
+    .libras-print__form-section-container {
+      margin-bottom: floor($cap_spacing/2);
+    }
+  }
+  .libras-print__author-info-container .libras-print__input-text {
+    margin-bottom: 0.2em;
+  }
+  .libras-print__size-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .libras-print__advanced-options-section [class*="libras-icon"],
+  .libras-print__size-container [class*="libras-icon"] {
+    background: transparent;
+    font-size: $button_text_size;
+  }
+  .libras-print__size-container [class*="libras-icon"] {
+    align-self: flex-end;
+  }
+  .libras-print__size-container button {
+    color: $button_text_color;
+  }
+  .libras-print__width-container,
+  .libras-print__height-container {
+    flex: 0 0 43%;
+  }
+  .libras-print__swap-button {
+    flex: 0 0 5%;
+  }
+  .libras-print__export-title {
+    font-weight: $text_weight_normal;
+    font-size: $h2_text_size;
+  }
+  .libras-print__export-button {
+    width: 100%;
+    background-color: $libras_blue_button_bg;
+    color: $text_inverse_color;
+    border: none;
+    margin: 20px 0;
+  }
+  .libras-print__export-button:hover {
+    background-color: $libras_blue_button_bg_hover;
+    color: $text_inverse_color;
+  }
+  .libras-print__export-button.libras-disabled {
+    pointer-events: none;
+  }
+  .libras-print__export-panel-container {
+    font-size: $text_size_small;
+    border-top: 1px solid #ddd;
+    padding: $cap_spacing 0;
+  }
+  .libras-print__export-panel-container [class*="libras-icon"] {
+    margin-right: 0.5em;
+    margin-top: 0.15em;
+  }
+  .libras-print__exported-file-link-title {
+    word-break: break-all;
+  }
+  .libras-print__exported-file-link-title.libras-disabled {
+    color: $disabled_color;
+  }
+  .libras-print__exported-file-link {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.3em;
+    margin-bottom: floor($cap_spacing/2);
+  }
+  .libras-print__exported-file--error {
+    color: $error_text_color;
+    cursor:pointer;
+  }
+  .libras-print .libras-print__exported-file--error:hover {
+    color: $error_text_color;
+  }
+  .libras-print__exported-file .libras-disabled {
+    pointer-events: none;
+  }
+  html[dir="rtl"] {
+    .libras-print__export-panel-container [class*="libras-icon"] {
+      margin-right: 0;
+      margin-left: 0.5em;
+    }
+    .libras-print__advanced-options-button[aria-expanded="false"] .libras-print__advanced-options-button-icon--closed {
+      display: none;
+    }
+    .libras-print__advanced-options-button[aria-expanded="false"] .libras-print__advanced-options-button-icon--closed-rtl {
+      display: block;
+    }
+  }
+}
+
+@if $include_Print == true {
+  @include print();
+}

@@ -1,0 +1,1 @@
+define(["Libras"],function(i){return function(e){let a,c=e.scene,t=e.canvas,n=new i.Cartesian2(t.width/2,t.height/2);if(c.pick(n))(o=c.pickPosition(n))&&(a=ellipsoid.cartesianToCartographic(o));else try{var r=c.camera.getPickRay(n),o=c.globe.pick(r,e.scene);a=i.Ellipsoid.WGS84.cartesianToCartographic(o)}catch(i){}return a}});

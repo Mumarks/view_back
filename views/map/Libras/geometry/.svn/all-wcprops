@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry
+END
+PrimitiveGeometry.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/PrimitiveGeometry.js
+END
+Polygon.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/Polygon.js
+END
+Point.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/Point.js
+END
+Polyline.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/Polyline.js
+END
+SimpleCircle.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/SimpleCircle.js
+END
+GraphicsGeometry.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/GraphicsGeometry.js
+END
+SimplePoint.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/team2/!svn/ver/14454/qianduan/layui_back/views/map/Libras/geometry/SimplePoint.js
+END

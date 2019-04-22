@@ -1,0 +1,65 @@
+@mixin attribution() {
+
+  .libras-attribution {
+    font-size: 0.75em;
+    line-height: 16px;
+    color: $text_color;
+    background-color: rgba($background_color, 0.65);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .libras-attribution__link {
+    :hover,
+    :active,
+    :visited,
+    :focus {
+      color: currentColor;
+    }
+    color: currentColor;
+    text-decoration: underline;
+  }
+
+  .libras-attribution__sources {
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+    align-self: flex-start;
+    flex: 1 0;
+  }
+
+  .libras-attribution__sources[role="button"] {
+    font-size: 1em;
+  }
+
+  .libras-attribution__powered-by {
+    font-weight: 400;
+    padding: 0 5px;
+    text-align: right;
+    white-space: nowrap;
+    align-self: flex-end;
+  }
+
+  .libras-attribution--open {
+    z-index: 2;
+  }
+
+  .libras-attribution__sources--open {
+    white-space: normal;
+  }
+
+  html[dir="rtl"] {
+    .libras-attribution__powered-by {
+      text-align: left;
+    }
+  }
+}
+
+@if $include_Attribution == true {
+  @include attribution();
+}

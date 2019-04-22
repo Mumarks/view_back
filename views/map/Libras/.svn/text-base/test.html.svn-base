@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Libras</title>
+		<link rel="stylesheet" href="gisbase_almond/Widgets/widgets.css">
+		<style>
+			html,
+			body,
+			#map-content {
+				height: 100%;
+				width: 100%;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="map-content"></div>
+		<script src="init.js"></script>
+		<script>
+			require.config({
+				baseUrl: './'
+			})
+			require([
+				"views/SceneView",
+				"Libras"
+			], function(SceneView, Libras) {
+
+				viewer = new SceneView({
+					container: 'map-content'
+				});
+
+				var dataGuid = '6a5504e4-5e56-411d-80c8-987153f1c74c';
+				var sTimeSeconds = new Date().getTime();
+				tileset = new Libras.LSPageLOD({
+					// url: "http://192.168.10.205/dkdl/model.json?" + sTimeSeconds
+					url: "http://192.168.10.139:8080/TX_DataManager/data/6a5504e4-5e56-411d-80c8-987153f1c74c/data/model.json?" + sTimeSeconds
+				});
+				tileset.id = dataGuid;
+				viewer.scene.primitives.add(tileset);
+
+				tileset.readyPromise.then(function(pagelod) {
+					osgbLod = pagelod;
+					viewer.camera.flyTo({
+						destination: Libras.Cartesian3.fromDegrees(pagelod.origin.x, pagelod.origin.y, pagelod.origin.z + 1500),
+						duration: 1
+					});
+					tileset.progressEvent.addEventListener(onProgressInfo);
+				}).otherwise(function(error) {
+					console.error(error);
+				});
+			});
+		</script>
+	</body>
+
+</html>

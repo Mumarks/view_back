@@ -1,0 +1,23 @@
+.libras-viewer-toolbar {
+  top: 13px !important;
+  right: 12px !important; }
+
+.libras-geocoder-searchButton {
+  width: 42px !important;
+  height: 38px !important;
+  background-color: #fff !important;
+  text-align: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important; }
+  .libras-geocoder-searchButton > span {
+    font-size: 18px; }
+
+.libras-viewer-geocoderContainer .libras-geocoder-input {
+  margin: 1px !important;
+  height: 38px !important; }
+
+.libras-viewer-geocoderContainer .libras-geocoder-input {
+  padding: 0px 40px 0 0 !important; }
+
+/*# sourceMappingURL=Geocoder.css.map */

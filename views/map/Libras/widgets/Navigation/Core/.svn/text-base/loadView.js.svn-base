@@ -1,0 +1,1 @@
+define(["Libras","../../../widgets/Navigation/Core/createFragmentFromTemplate"],function(e,n){"use strict";var t=e.getElement,r=e.knockout;return function(e,i,o){i=t(i);var a,d=n(e),l=[];for(a=0;a<d.childNodes.length;++a)l.push(d.childNodes[a]);for(i.appendChild(d),a=0;a<l.length;++a){var p=l[a];1!==p.nodeType&&8!==p.nodeType||r.applyBindings(o,p)}return l}});

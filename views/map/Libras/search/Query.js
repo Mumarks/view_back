@@ -1,0 +1,1 @@
+define(["Libras"],function(e){var t=e.defaultValue,r=e.defined,i=e.DeveloperError;return function(e){if(!r(e))throw new i("options is required");var o=t(e.where,"");if(r(e.geometry)&&r(e.spatialRelation)){var n=e.geometry;if(!n.WKTContent)throw new i("this geometry is not support WKT");var a=e.spatialRelation+"(the_geom,"+n.WKTContent+")";""!=o&&(o+=" AND "),o+=a}this.where=o}});

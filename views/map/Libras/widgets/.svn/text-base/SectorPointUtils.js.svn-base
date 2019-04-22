@@ -1,0 +1,1 @@
+define(["Libras"],function(r){var n=r.Check,t=r.RuntimeError;return function(r){if(!r)throw new t("options is required!");n.typeOf.object("options",r);var e,i,o,a,s,u=r.center,h=r.radius,c=r.startAngle,f=r.endAngle,p=r.pointNum,d=new Array;d.push(u);for(var M=1;M<=p;M++)s=c+(f-c)*M/p,e=Math.sin(s*Math.PI/180),i=Math.cos(s*Math.PI/180),o=u[0]+h*e,a=u[1]+h*i,d[M]=[o,a];return d}});

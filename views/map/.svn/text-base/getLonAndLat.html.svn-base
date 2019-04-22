@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>获取经纬度</title>
+		<link rel="stylesheet" href="Libras/gisbase_almond/Widgets/widgets.css">
+		<style type="text/css">
+			/*  Libras 视图 */
+			
+			.mapBox {
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 100%;
+			}
+			/* 经纬度显示区 */
+			/* 鼠标点击获取的经纬度 */
+			
+			.showLocationBox {
+				position: absolute;
+				left: calc(50% - 130px);
+				bottom: 10px;
+				color: #fff;
+				z-index: 1111;
+			}
+			/* 手动输入经纬度 */
+			
+			.inputLoLa {
+				position: absolute;
+				top: 10px;
+				color: #fff;
+				z-index: 1111;
+			}
+			
+			.inputW {
+				width: 180px;
+				height: 20px;
+				margin-left: 5px;
+			}
+			/* 地图上的定位按钮 */
+			
+			.inputLoLa button {
+				position: relative;
+				top: 2px;
+				margin-left: 5px;
+				padding: 2px 6px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Libras 视图 -->
+		<div id="map-content" class="mapBox" data-S>
+			<!-- 经纬度显示区 -->
+			<div class="showLocationBox">
+				<div>
+					您目前所处位置：经度：<span class="nowLon"></span>；纬度：<span class="nowLat"></span>；<span class="scale"></span>
+				</div>
+			</div>
+			<!-- 手动输入经纬度 -->
+			<div class="inputLoLa">
+				<input type="text" class="inLonyq inputW" name="inLon" placeholder="请输入经度">
+				<input type="text" class="inLatyq inputW" name="inLat" placeholder="请输入纬度">
+				<button id="gotoBtn">定位</button>
+			</div>
+		</div>
+		<script src="../lib/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="Libras/init.js"></script>
+		<script type="text/javascript">
+			//截取url地址 id
+			function requireUrlData(strName) {
+				var strHref = location.href;
+				var intPos = strHref.indexOf("?");
+				var strRight = strHref.substr(intPos + 1);
+				var arrTmp = strRight.split("&");
+				for(var i = 0; i < arrTmp.length; i++) {
+					var arrTemp = arrTmp[i].split("=");
+					if(arrTemp[0].toUpperCase() == strName.toUpperCase())
+						return arrTemp[1];
+				}
+				return "";
+			}
+			var lon = requireUrlData('lon') || '106.479661',
+				lat = requireUrlData('lat') || '29.556033',
+				height = requireUrlData('height') || '0';
+			lon = lon * 1;
+			lat = lat * 1;
+			height = height * 1;
+			var bb = lon + "," + lat + "," + height;
+			$("#map-content").attr("data-S", bb);
+			$("input[name=inLon]").val(lon);
+			$("input[name=inLat]").val(lat);
+			require([
+				"views/SceneView",
+				"others/EventDrive",
+				'symbols/PicStyleSymbol',
+				'layers/GraphicsLayer',
+				'Graphic',
+				'layers/ElevationLayer',
+				'gisbase_almond/ThirdParty/when',
+				'search/QueryElevation'
+			], function(SceneView, EventDrive, PicStyleSymbol, GraphicsLayer, Graphic, ElevationLayer, when, QueryElevation) {
+				//创建视图
+				viewer = new SceneView({
+					container: "map-content"
+				});
+
+				//定位
+				viewer.goTo({
+					center: [lon, lat, 900],
+					roll: 0 //视角以视野中心轴线为中心周围旋转 默认0
+				});
+
+				//栽点   图片类
+				//重建图层 
+				builder = new PicStyleSymbol();
+				location(lon, lat, height);
+				//封装函数  页面栽点    Lo经度,La纬度,paramHeight高度
+				function location(Lo, La, paramHeight) {
+					viewer.map.findLayerById('layer1') && viewer.map.remove(viewer.map.findLayerById('layer1'));
+					layer = new GraphicsLayer({
+						id: "layer1"
+					})
+					//添加图层
+					viewer.map.add(layer);
+					when(builder.fromUrl('images/light.png', 68), function(baseImg) {
+						var graphic = new Graphic({
+							id: 'test',
+							geometry: {
+								type: 'point',
+								longitude: Lo,
+								latitude: La,
+								height: paramHeight
+							},
+							symbol: {
+								type: 'picture-marker',
+								height: 68,
+								width: 68,
+								url: baseImg
+							}
+						});
+						layer.add(graphic);
+					});
+				}
+				$("#distanceLegendDiv").css({
+					"display": "none"
+				});
+
+				//封装函数  页面显示经纬度的赋值
+				function showNowLonAndLat(lonLat) {
+					$('.nowLon').html(lonLat.mapPoint.longitude.toFixed(8) + "°");
+					$('.nowLat').html(lonLat.mapPoint.latitude.toFixed(8) + "°");
+				}
+				//鼠标获取经纬度
+				var eventDrive = EventDrive({
+					viewer: viewer,
+					eventType: 'left_click',
+					callBack: function(a, b) {
+						showNowLonAndLat(a); //调用方法  页面显示经纬度
+						location(a.mapPoint.longitude, a.mapPoint.latitude, a.mapPoint.height); //调用方法  页面显示栽点
+						s = a.mapPoint.longitude + "," + a.mapPoint.latitude + "," + a.mapPoint.height;
+						$("#map-content").attr("data-S", s);
+					}
+				});
+				//移动鼠标获取经纬度
+				var eventDrive = EventDrive({
+					viewer: viewer,
+					eventType: 'MOUSE_MOVE',
+					callBack: function(a, b) {
+						showNowLonAndLat(a); //调用方法  页面显示经纬度
+					}
+				});
+
+				//添加高程
+				elevationLayer = new ElevationLayer({
+					url: "http://183.230.252.112:19092/libra/lvyou/wms/cq_spb_gc@dem",
+					id: 'chaotuotuo' //id可选，如不指定将自动分配
+				})
+				viewer.map.ground.layer.add(elevationLayer);
+
+				//手动输入经纬度
+				// 确定按钮 的点击事件
+				$("#gotoBtn").click(function() {
+					var inLo = $(".inLonyq").val() * 1;
+					var inLa = $(".inLatyq").val() * 1;
+					if(!inLo || inLo == "" || inLo == null || !inLa || inLa == "" || inLa == null) {
+						//alert("请输入经度、纬度");
+						window.parent.layer.msg('请输入经度、纬度');
+					} else {
+						// 显示经纬度
+						$('.nowLon').html(inLo + "°");
+						$('.nowLat').html(inLa + "°");
+						//加载点
+						//视图定位到点
+						autoGetHeight = function(lon, lat, zoom = 1000) {
+							viewer.goTo({
+								center: [lon, lat, zoom],
+								complete: function() {
+									var s = new QueryElevation(viewer);
+									location(inLo * 1, inLa * 1, s.height * 1);
+									s = inLo + "," + inLa + "," + s.height;
+									$("#map-content").attr("data-S", s);
+								}
+							})
+						}
+						autoGetHeight(inLo * 1, inLa * 1);
+					}
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

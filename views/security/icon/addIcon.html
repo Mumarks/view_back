@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../../layuiadmin/modules/formSelect/formSelects-v4.css" media="all"/>
+	</head>
+
+	<body>
+		<div class="layui-form" lay-filter="security_form_gongkan" id="security_form_gongkan" style="padding: 20px 30px 0 0;">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">icon名称</label>
+					<div class="layui-input-inline">
+						<input type="text" name="iconName" lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input" >
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">icon类名</label>
+					<div class="layui-input-inline">
+						<input type="text" name="iconClass" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" >
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">icon类型</label>
+					<div class="layui-input-block">
+						<select name="iconType" lay-verify="required">
+							<option value=""></option>
+							<option value="0">iconfont</option>
+							<option value="1">layui</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-hide">
+				<button class="layui-btn" lay-submit lay-filter="security_submit_gongkan" id="security_submit_gongkan">提交</button>
+			</div>
+		</div>
+
+		<script src="../../../layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '../../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index', //主入口模块
+				formSelects: 'formSelect/formSelects-v4.min'
+			}).use(['index', 'form', 'qCommon','laydate', 'formSelects'], function() {
+				var $ = layui.$,
+					form = layui.form,
+					formSelects = layui.formSelects,
+					laydate = layui.laydate;
+					qCommon = layui.qCommon;
+					
+				layui.formSelects.data('roleSelect', 'server', {
+		            url: layui.setter.domian + '/account/getRoleByOrganization',
+		            beforeSuccess: function(id, url, searchVal, result){
+		               	//我要把数据外层的code, msg, data去掉
+		                result = result.data;
+		                var data = [];
+		                for(var i = 0; i < result.length; i++){
+		                	data[data.length] = {
+		                		name : result[i].nameCn,
+		                		value : result[i].roleCode
+		                	}
+		                }
+		                //然后返回数据
+		                return data;
+		            }
+		        });
+			})
+			
+		</script>
+		<script>
+			
+		</script>
+	</body>
+
+</html>
