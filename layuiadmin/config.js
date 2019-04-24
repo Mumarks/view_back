@@ -1,6 +1,6 @@
 layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
 
-	var Ip = "http://192.168.1.156:8082/";
+	var Ip = "http://localhost:8082/";
 
   // 正式服ip地址
    var ipconfig = Ip;

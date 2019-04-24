@@ -23,7 +23,7 @@ layui.define('view', function(exports){
   ,FILTER_TAB_TBAS = 'layadmin-layout-tabs'
   ,APP_SPREAD_SM = 'layadmin-side-spread-sm', TABS_BODY = 'layadmin-tabsbody-item'
   ,ICON_SHRINK = 'layui-icon-shrink-right', ICON_SPREAD = 'layui-icon-spread-left'
-  ,SIDE_SHRINK = 'layadmin-side-shrink', SIDE_MENU = 'LAY-system-side-menu'
+  ,SIDE_SHRINK = 'layadmin-side-shrink', SIDE_MENU = 'layui-menu'
 
   //通用方法
   ,admin = {
