@@ -1,7 +1,6 @@
 /**
- * 封装table组件
+ * 封装组件和Ajax
  */
-var tabCount=0; //该变量作为危房导出Excel数据的判断依据----不要删除！！
 layui.define(['table', 'form','upload'], function(exports) {
 	var $ = layui.$,
 		table = layui.table,
@@ -132,9 +131,6 @@ layui.define(['table', 'form','upload'], function(exports) {
 			request: {
 				pageName: "page",
 				limitName: "size"
-			},
-			done: function(res, curr, count){
-				tabCount=count;
 			}
 		})
 	}

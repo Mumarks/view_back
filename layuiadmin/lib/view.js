@@ -115,7 +115,7 @@ layui.define(['laytpl', 'layer'], function(exports){
       ,error: function(e, code){
       	if(e.status == 500){
       		if(e.responseJSON.message == '未登录或登录过期，请前往登录！'){
-	      		top.location.href = '../views/user/login.html'; 
+	      		top.location.href = '../views/login/login.html';
 	      	}
       	}
         var error = [

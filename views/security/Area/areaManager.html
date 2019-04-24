@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>地区管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+		<style type="text/css">
+			.layui-card-header .layui-icon {
+			    position: relative;
+			    right: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="layui-fluid">
+			<div class="layui-card">
+				
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto">
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">地区名称</label>
+							<div class="layui-input-block">
+								<input type="text" name="name" placeholder="请输入地区全称" autocomplete="off" class="layui-input" id="input_area">
+							</div>
+						</div>
+						<!-- 搜索按钮 -->
+						<div class="layui-inline">
+							<button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="security_area_btn" id="btn_search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!--<div class="layui-card-body">
+					<div class="layui-card-header layuiadmin-card-header-auto">
+						<button class="layui-btn layui-btn-sm " id="security_form_area" lay-event="add">
+							<i class="layui-icon layui-icon-add-1"></i>添加（省/直辖市）
+						</button>
+					</div>
+					<table id="security_area" lay-filter="security_area"></table>
+				</div>-->
+				
+				<div class="layui-card-body">
+					<div class="layui-card-header layuiadmin-card-header-auto">
+						<button class="layui-btn layui-btn-danger layui-btn-sm security_btn_area" id="security_form_area" data-type="add">添加（省/直辖市）</button>
+					</div>
+					<table id="security_area" lay-filter="security_area"></table>
+				</div>
+			</div>
+			<script type="text/html" id="security_Area">
+				<!--添加-->
+				{{# if(d.level == 1 &&  validatePermission('/editAccount')){ }}
+					<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="addChildArea"><i class="layui-icon layui-icon-add-1"></i>添加地级市</a>
+				{{# } else if(d.level=== 2) { }}  
+					<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="addChildArea"><i class="layui-icon layui-icon-add-1"></i>添加区县</a>
+				{{# } else if(d.level=== 3) { }}  
+					<a class="layui-btn layui-btn layui-btn-xs" lay-event="addChildArea"><i class="layui-icon layui-icon-add-1"></i>添加（镇/街道）</a>
+				{{# } else if(d.level=== 4) { }}  
+					<a class="layui-btn layui-btn layui-btn-xs" lay-event="addChildArea"><i class="layui-icon layui-icon-add-1"></i>添加社区</a>
+				{{# } }} 
+				<!--编辑-->
+				{{# if(d.level == 1 &&  validatePermission('/editAccount')){ }}
+					<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑(省/直辖市)</a>
+				{{# } else if(d.level=== 2) { }}  
+					<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑地级市</a>
+				{{# } else if(d.level=== 3) { }}  
+					<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑区县</a>
+				{{# } else if(d.level=== 4) { }}  
+					<a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑(镇/街道)</a>
+					<a class="layui-btn layui-btn-xs" lay-event="link">倾斜地图摄影连接</a>
+				{{# } else if(d.level=== 5) { }}  
+					<a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑社区</a>
+				{{# } }}
+				
+				<!--删除-->
+					<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
+			</script>
+		</div>
+
+		<script src="../../../layuiadmin/layui/layui.js"></script>
+		<script src="../../lib/common.js"></script>
+		<script src="js/areaManager.js"></script>
+	</body>
+
+</html>
