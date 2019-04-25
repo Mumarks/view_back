@@ -1,14 +1,11 @@
 layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
 
-	var Ip = "http://localhost:8082/";
+  var Ip = "http://localhost:8082/";
 
   // 正式服ip地址
-   var ipconfig = Ip;
-   var uoloadUrl= Ip + "upload/uploadFile";
-   var urlfile =  Ip + 'api/file/';
-//var ipconfig = 'http://183.230.252.112:32012/';
-//var uoloadUrl="http://183.230.252.112:32012/upload/uploadFile";
-//var urlfile = 'http://183.230.252.112:32012/api/file/';
+  var ipconfig = Ip;
+  var uoloadUrl= Ip + "upload/uploadFile";
+  var urlfile =  Ip + 'api/file/';
 
   exports('setter', {
     container: 'LAY_app' //容器ID

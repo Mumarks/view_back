@@ -7,6 +7,25 @@ layui.define(['table', 'form'], function (exports) {
     var qDate = {};
 
     /*
+     * 时间戳转yyyy-MM-dd hh:mm:ss
+     */
+    qDate.formatDateTime = function(inputTime) {
+        var date = new Date(inputTime);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+    };
+
+    /*
      * 获取当前年的第几周，以及周对应的日期范围（根据当前日期的时间）
      */
     qDate.getYearWeekRange = function (year, weekNum) {

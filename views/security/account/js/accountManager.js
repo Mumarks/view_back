@@ -8,22 +8,20 @@ layui.config({
         table = layui.table,
         qCommon = layui.qCommon;
 
-    console.log(layui);
-
     qCommon.table({
         elem: '#security_user',
         url: layui.setter.domian + '/account/queryAccountList',
         toolbar : "#toolbar",
         cols: [
             [{type: 'checkbox',fixed: 'left'},
-                {field: 'username',title: '账号'},
-                {field: 'nickName',title: '昵称'},
-                {field: 'isAvailable',title: '启用',templet: '#isAvailable',align: "center"},
-                {field: 'addDate',title: '添加时间'},
-                {field: 'alterDate',title: '修改时间'},
-                {field: 'creater',title: '添加人'},
-                {field: 'modifier',title: '修改人'},
-                {title: '操作',width:300,align: 'center',fixed: 'right',toolbar: '#security_user_handle'}]
+             {field: 'username',title: '账号'},
+             {field: 'nickName',title: '昵称'},
+             {field: 'isAvailable',title: '启用',templet: '#isAvailable',align: "center"},
+             {field: 'addDate',title: '添加时间'},
+             {field: 'alterDate',title: '修改时间'},
+             {field: 'creater',title: '添加人'},
+             {field: 'modifier',title: '修改人'},
+             {title: '操作',width:300,align: 'center',fixed: 'right',toolbar: '#security_user_handle'}]
         ],
     });
 

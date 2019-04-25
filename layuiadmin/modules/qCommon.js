@@ -134,60 +134,7 @@ layui.define(['table', 'form','upload'], function(exports) {
 			}
 		})
 	}
-	
-	// 时间戳转yyyy-MM-dd hh:mm:ss
-	qCommon.formatDateTime = function(inputTime) {  
-	    var date = new Date(inputTime);
-	    var y = date.getFullYear();  
-	    var m = date.getMonth() + 1;  
-	    m = m < 10 ? ('0' + m) : m;  
-	    var d = date.getDate();  
-	    d = d < 10 ? ('0' + d) : d;  
-	    var h = date.getHours();
-	    h = h < 10 ? ('0' + h) : h;
-	    var minute = date.getMinutes();
-	    var second = date.getSeconds();
-	    minute = minute < 10 ? ('0' + minute) : minute;  
-	    second = second < 10 ? ('0' + second) : second; 
-	    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;  
-	};
-	
-	/**
-	 * 切割片区选择的方法
-	 * @param {Object} area 需要切割的字段
-	 */
-	qCommon.cutAddress = function(area){
-		var result = {
-			province : "",
-			city : "",
-			county : "",
-			street : "",
-			community : ""
-		};
-		if(qCommon.isNull(area)){
-			return result;
-		}
-		var areaList = area.split("/");
-		if(areaList.length == 0){
-			return result;
-		}
-		
-		for(var i = 0; i < areaList.length; i++){
-			if(i == 0){
-				result.province = areaList[i];
-			} else if(i == 1){
-				result.city = areaList[i];
-			} else if(i == 2){
-				result.county = areaList[i];
-			} else if(i == 3){
-				result.street = areaList[i];
-			} else if(i == 4){
-				result.community = areaList[i];
-			}
-		}
-		return result;
-	}
-	
+
 	// 提示框
 	qCommon.warn = function(message){
 		layer.alert(message, {
