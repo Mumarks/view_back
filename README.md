@@ -1,4 +1,29 @@
+
+
+
 ### 项目整体说明
+- [目录结构说明](#目录结构说明)
+- [开发说明](#开发说明)
+    - [模块目录开发规范](#模块目录开发规范)
+        - [目录结构](#目录结构)
+        - [示例说明](#示例说明)
+        - [html命名规范](#html命名规范)
+        - [js命名规范](#js命名规范)
+    - [模块功能开发规范](#模块功能开发规范)
+        - [标准后台页面结构](#标准后台页面结构)
+        - [查询功能](#查询功能)
+        - [表格](#表格)
+        - [表格头按钮](#表格头按钮)
+        - [表格内按钮](#表格内按钮)
+        - [弹窗通用模板](#弹窗通用模板)
+        - [添加功能](#添加功能)
+        - [修改功能](#修改功能)
+        - [删除功能](#删除功能)
+    - [全局设置说明](#全局设置说明)
+        - [请求地址全局配置](#请求地址全局配置) 
+        - [全局封装组件说明](#全局封装组件说明)
+        - [三方组件使用说明](#三方组件使用说明)
+        - [如何组件封装](#如何组件封装)
 ---
 
 #### 目录结构说明
@@ -53,11 +78,11 @@
 
 #### 开发说明
 
-- **模块目录开发规范**
+ - ##### 模块目录开发规范
 
     > 新增功能文件存放文件全部放入<html><span style="color:red">service</span></html>文件里面，按<html><span style="color:red">功能</span></html>创建子目录，该功能所有<html><span style="color:red">代码</span></html>皆放入此目录中
     
-    - **目录结构**
+    - ##### 目录结构
 
         ```
         ├─views
@@ -68,11 +93,11 @@
         │  │  │ └─img       --模块功能 内部图片
         ```
 
-    - **示例说明**
+    - ##### 示例说明
 
         ![image](https://img-blog.csdnimg.cn/20190425094247773.png)
 
-    - **html命名规范**
+    - ##### html命名规范
    
         模块主页面命名格式为<html><span style="color:red"> **Manager.html</span><br/></html>
         其他页面按功能自定义命名，常见命名格式:<br/>
@@ -82,15 +107,15 @@
         修改主体：<html><span style="color:red">editXX.html</span><br/></html>
         修改某部分：<html><span style="color:red">editXXByXX.html</span><br/></html>
     
-    - **js命名规范**
+    - ##### js命名规范
      
         js命名规则与html命名规则一致，如html命名<span style = "color:red">**Manager.html</span>则对应js命名为<span style="color:red">**Manager.js</span>
 
-- **模块功能开发规范**
+- ##### 模块功能开发规范
 
     > 功能开发规范和功能示例
     
-    - **标准后台页面结构**
+    - ##### 标准后台页面结构
         ```
         <div class="layui-fluid">
 			<div class="layui-card">
@@ -121,7 +146,7 @@
         
         > **注意：** |条件|条件字段|表格ID| 需要根据当前业务自己定义
         
-    - **查询功能**
+    - ##### 查询功能
        - html代码
             ```
             <div class="layui-form layui-card-header layuiadmin-card-header-auto">
@@ -149,7 +174,7 @@
                 });
             });
             ```
-    - **表格**
+    - ##### 表格
         - html代码
             ```
             <table id="表格ID" lay-filter="表格ID"></table>
@@ -174,7 +199,7 @@
             ```
         > **注意：** ==*qCommon*== 为二次封装得layui插件，在后续中会进行解释
             
-    - **表格头按钮**
+    - ##### 表格头按钮
         - html代码
             ```
             <script type="text/html" id="模板ID">
@@ -203,7 +228,7 @@
             ```
         > **注意：** ==*validatePermission*== 方法为权限颗粒化验证，用于控制按钮得显隐
         
-    - **表格内按钮**
+    - ##### 表格内按钮
     
         - html代码
         
@@ -236,7 +261,7 @@
             ```
         > **注意：** ==*validatePermission*== 方法为权限颗粒化验证，用于控制按钮得显隐
             
-    - **弹窗通用模板**
+    - ##### 弹窗通用模板
         - 新增一个页面
         - 主页面新增按钮
             ```
@@ -271,7 +296,7 @@
                 });
             }
             ```
-    - **添加功能**
+    - ##### 添加功能
         - 新增一个页面
             ```
             <!DOCTYPE html>
@@ -356,7 +381,7 @@
                 });
             }
             ```
-    - **修改功能**
+    - ##### 修改功能
         - 新增一个页面
             ```
             <!DOCTYPE html>
@@ -446,7 +471,7 @@
                 });
             }
             ```
-    - **删除功能**
+    - ##### 删除功能
         - html代码
             ```
             <script type="text/html" id="模板ID">
@@ -481,15 +506,15 @@
                 });
             }
             ```
-- **全局设置说明**
-    - **请求地址全局配置**
+- ##### 全局设置说明
+    - ##### 请求地址全局配置
     
         ![进入config](https://img-blog.csdnimg.cn/20190425143528533.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpbl9QaXNjZXM=,size_16,color_FFFFFF,t_70)
         ![修改Ip](https://img-blog.csdnimg.cn/20190425143903916.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpbl9QaXNjZXM=,size_16,color_FFFFFF,t_70)
         
         将Ip修改为对应地址
         
-    - **全局封装组件说明**
+    - ##### 全局封装组件说明
     
         - 基础组件封装——qCommon
         
@@ -519,11 +544,11 @@
         
         > **注意：** 此封装为当前时间(2019-04-25)的封装，后续有新增封装时在添加
 
-    - **三方组件使用说明**
+    - ##### 三方组件使用说明
     
         暂无
     
-    - **如何组件封装**
+    - ##### 如何组件封装
         
          ```
         ├─layuiadmin
