@@ -21,7 +21,6 @@ layui.config({
         },
         crossDomain: true,
         success : function(res) {
-            console.log(res);
             var data = res.data;
             var menuHtml = '<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="layui-menu" lay-filter="layadmin-system-side-menu">';
 

@@ -42,11 +42,8 @@ layui.config({
         obj.tr.find('input[lay-type="layTableRadio"]').prop("checked",true);
         var index = obj.tr.data('index')
         var thisData = table.cache.dictionaryType;//tableName 表名
-        console.log(thisData);
         //重置数据单选属性
         layui.each(thisData, function(i, item){
-            console.log(i);
-            console.log(item);
             if(index === i){
                 item.LAY_CHECKED = true;
             } else {
