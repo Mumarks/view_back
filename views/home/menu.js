@@ -47,7 +47,7 @@ layui.config({
         },
         error : function (XMLHttpRequest, textStatus, errorThrown) {
             if(XMLHttpRequest.responseJSON.message == '未登录或登录过期，请前往登录！'){
-                window.location.href = '../login/login.html';
+                window.location.href = '../views/login/login.html';
             }
         }
     });

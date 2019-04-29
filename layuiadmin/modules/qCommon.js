@@ -165,6 +165,18 @@ layui.define(['table', 'form','upload'], function(exports) {
 		    ,anim: 1 //动画类型
 		});
 	}
+
+
+    // 动态加载css样式文件
+    qCommon.loadStyle = function(url) {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = url;
+        link.media = "all";
+        var head = document.getElementsByTagName("head")[0];
+        head.appendChild(link);
+    };
 	
 	exports('qCommon', qCommon);
 	

@@ -23,6 +23,7 @@
         - [请求地址全局配置](#请求地址全局配置) 
         - [全局封装组件说明](#全局封装组件说明)
         - [三方组件使用说明](#三方组件使用说明)
+            - [ckeditor 富文本插件使用说明](#ckeditor富文本插件使用说明)
         - [如何组件封装](#如何组件封装)
 ---
 
@@ -34,7 +35,7 @@
     ```
     ├─layuiadmin
     │  ├─lib                        --全局配置
-    │  ├─modules                    --封装模块和组件(layui) 
+    │  ├─modules                    --封装模块和组件(layui)
     │  │  ├─eleTree
     │  │  ├─formSelect
     │  │  ├─iconPicker
@@ -81,7 +82,7 @@
  - ##### 模块目录开发规范
 
     > 新增功能文件存放文件全部放入<html><span style="color:red">service</span></html>文件里面，按<html><span style="color:red">功能</span></html>创建子目录，该功能所有<html><span style="color:red">代码</span></html>皆放入此目录中
-    
+
     - ##### 目录结构
 
         ```
@@ -98,23 +99,23 @@
         ![image](https://img-blog.csdnimg.cn/20190425094247773.png)
 
     - ##### html命名规范
-   
+
         模块主页面命名格式为<html><span style="color:red"> **Manager.html</span><br/></html>
         其他页面按功能自定义命名，常见命名格式:<br/>
-     
+
         查看：<html><span style="color:red">infoXX.html</span><br/></html>
         添加：<html><span style="color:red">addXX.html</span><br/></html>
         修改主体：<html><span style="color:red">editXX.html</span><br/></html>
         修改某部分：<html><span style="color:red">editXXByXX.html</span><br/></html>
-    
+
     - ##### js命名规范
-     
+
         js命名规则与html命名规则一致，如html命名<span style = "color:red">**Manager.html</span>则对应js命名为<span style="color:red">**Manager.js</span>
 
 - ##### 模块功能开发规范
 
     > 功能开发规范和功能示例
-    
+
     - ##### 标准后台页面结构
         ```
         <div class="layui-fluid">
@@ -135,7 +136,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- 表格 -->
 				<div class="layui-card-body">
 					<table id="表格ID" lay-filter="表格ID"></table>
@@ -143,9 +144,9 @@
 			</div>
 		</div>
         ```
-        
+
         > **注意：** |条件|条件字段|表格ID| 需要根据当前业务自己定义
-        
+
     - ##### 查询功能
        - html代码
             ```
@@ -188,7 +189,7 @@
                 cols: [
                     [{type: 'checkbox',fixed: 'left'},
                      {field: 'username',title: '账号'},
-                     {field: 'nickName',title: '昵称'}, 
+                     {field: 'nickName',title: '昵称'},
                      {field: 'addDate',title: '添加时间'},
                      {field: 'alterDate',title: '修改时间'},
                      {field: 'creater',title: '添加人'},
@@ -198,7 +199,7 @@
             });
             ```
         > **注意：** ==*qCommon*== 为二次封装得layui插件，在后续中会进行解释
-            
+
     - ##### 表格头按钮
         - html代码
             ```
@@ -215,7 +216,7 @@
                 url: layui.setter.domian + '请求接口',
                 toolbar : "#模板ID",
             });
-            
+
             //监听工具条
             table.on('toolbar(表格lay-filter)', function(obj) {
                 var data = obj.data;
@@ -227,11 +228,11 @@
             });
             ```
         > **注意：** ==*validatePermission*== 方法为权限颗粒化验证，用于控制按钮得显隐
-        
+
     - ##### 表格内按钮
-    
+
         - html代码
-        
+
             ```
             <script type="text/html" id="模板ID">
 				{{# if(validatePermission('/请求地址后一段')){ }}
@@ -248,7 +249,7 @@
                     [{title: '操作',width:300,align: 'center',fixed: 'right',toolbar: '#模板ID'}]
                 ],
             });
-            
+
             //监听工具条
             table.on('tool(表格lay-filter)', function(obj) {
                 var data = obj.data;
@@ -260,7 +261,7 @@
             });
             ```
         > **注意：** ==*validatePermission*== 方法为权限颗粒化验证，用于控制按钮得显隐
-            
+
     - ##### 弹窗通用模板
         - 新增一个页面
         - 主页面新增按钮
@@ -282,7 +283,7 @@
                         break;
                 }
             });
-            
+
             function 方法名(){
                 layer.open({
                     type: 2,
@@ -310,7 +311,7 @@
             		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
             		<link rel="stylesheet" href="../../../layuiadmin/modules/formSelect/formSelects-v4.css" media="all"/>
             	</head>
-            
+
             	<body>
             		<div class="layui-form" lay-filter="security_form_user" id="security_form_user" style="padding: 20px 30px 0 0;">
             			<div class="layui-form-item">
@@ -323,14 +324,14 @@
             				<button class="layui-btn" lay-submit lay-filter="提交lay-filter" id="提交ID">提交</button>
             			</div>
             		</div>
-            
+
             		<script src="../../../layuiadmin/layui/layui.js"></script>
             	</body>
             </html>
             ```
-            
+
         > **注意：** <span style="color:red">|表单字段|参数名|提交lay-filter|提交ID|</span> 需替换为当前业务内容
-            
+
         - 主页面新增按钮
             ```
             <script type="text/html" id="模板ID">
@@ -350,7 +351,7 @@
                         break;
                 }
             });
-            
+
             function 方法名(){
                 layer.open({
                     type: 2,
@@ -361,11 +362,11 @@
                     yes: function(index, layero) {
                         var iframeWindow = window['layui-layer-iframe' + index],
                         submit = layero.find('iframe').contents().find("#提交ID");
-    
+
                         //监听提交
                         iframeWindow.layui.form.on('submit(提交lay-filter)', function(data) {
                             var field = data.field; //获取提交的字段
-        
+
                             qCommon.ajax({
                                 url: "新增请求地址",
                                 data: field,
@@ -375,7 +376,7 @@
                                 }
                             })
                         });
-        
+
                         submit.trigger('click');
                     }
                 });
@@ -395,7 +396,7 @@
             		<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
             		<link rel="stylesheet" href="../../../layuiadmin/modules/formSelect/formSelects-v4.css" media="all"/>
             	</head>
-            
+
             	<body>
             		<div class="layui-form" lay-filter="security_form_user" id="security_form_user" style="padding: 20px 30px 0 0;">
             			<div class="layui-form-item">
@@ -408,14 +409,14 @@
             				<button class="layui-btn" lay-submit lay-filter="提交lay-filter" id="提交ID">提交</button>
             			</div>
             		</div>
-            
+
             		<script src="../../../layuiadmin/layui/layui.js"></script>
             	</body>
             </html>
             ```
-            
+
         > **注意：** <span style="color:red">|表单字段|参数名|提交lay-filter|提交ID|</span> 需替换为当前业务内容
-            
+
         - 主页面新增按钮
             ```
             <script type="text/html" id="模板ID">
@@ -435,7 +436,7 @@
                         break;
                 }
             });
-            
+
             function 方法名(data){
                 layer.open({
                     type: 2,
@@ -446,11 +447,11 @@
                     yes: function(index, layero) {
                         var iframeWindow = window['layui-layer-iframe' + index],
                         submit = layero.find('iframe').contents().find("#提交ID");
-    
+
                         //监听提交
                         iframeWindow.layui.form.on('submit(提交lay-filter)', function(data) {
                             var field = data.field; //获取提交的字段
-        
+
                             qCommon.ajax({
                                 url: "请求地址",
                                 data: field,
@@ -460,7 +461,7 @@
                                 }
                             })
                         });
-        
+
                         submit.trigger('click');
                     },
                     success: function(layero, index) {
@@ -480,7 +481,7 @@
 			{{# } }}
             ```
         - js代码
-    
+
             ```
             table.on('tool(表格lay-filter)', function(obj) {
                 var data = obj.data;
@@ -491,7 +492,7 @@
                         break;
                 }
             });
-            
+
             function 方法名(data){
                 layer.confirm('确定删除？', function(index) {
                     qCommon.ajax({
@@ -508,16 +509,16 @@
             ```
 - ##### 全局设置说明
     - ##### 请求地址全局配置
-    
+
         ![进入config](https://img-blog.csdnimg.cn/20190425143528533.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpbl9QaXNjZXM=,size_16,color_FFFFFF,t_70)
         ![修改Ip](https://img-blog.csdnimg.cn/20190425143903916.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpbl9QaXNjZXM=,size_16,color_FFFFFF,t_70)
-        
+
         将Ip修改为对应地址
-        
+
     - ##### 全局封装组件说明
-    
+
         - 基础组件封装——qCommon
-        
+
             | 方法 | 参数 | 返回值 | 描述 |
             | --- |--- | --- | --- |
             | qCommon.uoloads | Object function String| void | 基于layui上传组件进行的二次封装 |
@@ -529,7 +530,7 @@
             | qCommon.error | String | void | 失败提示 |
 
         - 日期封装——qDate
-        
+
             | 方法 | 参数 | 返回值 | 描述 |
             | --- |--- | --- | --- |
             | qDate.formatDateTime | String/Integer | String | 时间戳转yyyy-MM-dd hh:mm:ss |
@@ -541,15 +542,46 @@
             | qDate.GetDateStr | Integer Date | String | 参数：天数和时间；获取当前指定的前几天的日期,往前推4天，GetDateStr(4)，后推4天GetDateStr(-4) |
             | qDate.getDayEveryDay | Integer Integer | Array | 传入年，周数，获取周数对应的所有日期 |
             | qDate.getYearWeek | Integer | Integer | 获取一年总周数 |
-        
+
         > **注意：** 此封装为当前时间(2019-04-25)的封装，后续有新增封装时在添加
 
     - ##### 三方组件使用说明
-    
-        暂无
-    
+
+       - ##### ckeditor 富文本插件使用说明
+
+            - 页面引入ckeditor所需js
+                ```
+                <script src="../../lib/ckeditor/ckeditor.js"></script>
+                ```
+            - 创建标签
+                ```
+                // id不允许修改，只能为editor
+                <div id="editor"></div>
+                ```
+            - layui 引入封装模块 qCkeditor
+
+                ```
+                layui.use('qCkeditor', function(){
+                    var qCkeditor = layui.qCkeditor;
+                })
+
+                ```
+            - 初始化ckeditor
+                ```
+                // 传入创建的标签id
+                qCkeditor.init("editor");
+                ```
+            - 取值
+                ```
+                qCkeditor.getData();
+                ```
+            - 赋值
+                ```
+                qCkeditor.setData(value);
+                ```
+
     - ##### 如何组件封装
-        
+
          ```
         ├─layuiadmin
         │  ├─modules
@@ -564,11 +596,14 @@
             ,setter = layui.setter
             ,view = layui.view
             ,admin = layui.admin；
-          
+
             var common = {};
-        
-          
+
+
             //对外暴露的接口
             exports('common', common);
         });
         ```
+
+
+

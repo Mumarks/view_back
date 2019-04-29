@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example: Browsing Files</title>
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .ckeditorUpload{
+            width: 100%;
+            height: 100%;
+            padding-top: 134px;
+            padding-left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-upload-drag ckeditorUpload" id="ckeditorUpload">
+    <i class="layui-icon"></i>
+    <p>点击上传，或将文件拖拽到此处</p>
+</div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+
+    layui.config({
+        base: '../../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index', //主入口模块
+    }).use(['index','upload'], function(){
+        var $ = layui.jquery,
+            upload = layui.upload;
+
+        //拖拽上传
+        upload.render({
+            elem: '#ckeditorUpload'
+            ,url: layui.setter.domian + '/upload/uploadFile'
+            ,done: function(res){
+                returnFileUrl(res.data.src);
+            }
+        });
+
+
+        // 获取富文本的funcNum
+        function getUrlParam( paramName ) {
+            var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+            var match = window.location.search.match( reParam );
+
+            return ( match && match.length > 1 ) ? match[1] : null;
+        }
+
+        function returnFileUrl(fileUrl) {
+
+            var funcNum = getUrlParam( 'CKEditorFuncNum' );
+
+            window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl, function() {
+                var dialog = this.getDialog();
+                if ( dialog.getName() == 'image' ) {
+                    var element = dialog.getContentElement( 'info', 'txtAlt' );
+                    if ( element )
+                        element.setValue( 'alt text' );
+                }
+            } );
+            window.close();
+        }
+    })
+
+</script>
+</body>
+</html>
