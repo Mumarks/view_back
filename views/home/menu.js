@@ -1,7 +1,8 @@
 layui.config({
     base: '../../../layuiadmin/' //静态资源所在路径
-}).use(['table'], function() {
+}).use(['table', 'layer'], function() {
     var $ = layui.$,
+        layer = layui.layer,
     	element = layui.element;
 
     let tokenName = layui.setter.request.tokenName;
@@ -20,6 +21,7 @@ layui.config({
         },
         crossDomain: true,
         success : function(res) {
+            console.log(res);
             var data = res.data;
             var menuHtml = '<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="layui-menu" lay-filter="layadmin-system-side-menu">';
 
@@ -47,7 +49,12 @@ layui.config({
         },
         error : function (XMLHttpRequest, textStatus, errorThrown) {
             if(XMLHttpRequest.responseJSON.message == '未登录或登录过期，请前往登录！'){
-                window.location.href = '../views/login/login.html';
+                layer.alert('未登录或登录过期，请前往登录！', {
+                    skin: 'layui-layer-molv' //样式类名
+                    ,closeBtn: 0
+                }, function(){
+                    top.location.href = layui.setter.local + '/views/login/login.html';
+                });
             }
         }
     });

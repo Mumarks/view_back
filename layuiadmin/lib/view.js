@@ -113,9 +113,15 @@ layui.define(['laytpl', 'layer'], function(exports){
         typeof success === 'function' && success(res);
       }
       ,error: function(e, code){
+        console.log(e);
       	if(e.status == 500){
       		if(e.responseJSON.message == '未登录或登录过期，请前往登录！'){
-	      		top.location.href = '../views/login/login.html';
+                layer.alert('未登录或登录过期，请前往登录！', {
+                    skin: 'layui-layer-molv' //样式类名
+                    ,closeBtn: 0
+                }, function(){
+                    top.location.href = layui.setter.local + '/views/login/login.html';
+                });
 	      	}
       	}
         var error = [
